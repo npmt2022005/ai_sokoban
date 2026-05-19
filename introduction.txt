@@ -1,0 +1,16 @@
+1. Quy ước ký tự chuẩn (Standard Symbols)
+Đây là bộ ký tự phổ biến nhất mà các bộ dữ liệu Sokoban quốc tế thường dùng:
+
+# (Thăng): Tường (Wall) - Không thể đi xuyên qua.
+
+  (Dấu cách): Sàn trống (Floor) - Nơi nhân vật và hộp di chuyển.
+
+. (Dấu chấm): Điểm đích (Goal/Target) - Nơi cần đẩy hộp vào.
+
+$ (Đô la): Hộp (Box) - Có thể đẩy.
+
+@ (A còng): Nhân vật (Player) - Vị trí xuất phát của người chơi.
+
+* (Sao): Hộp đã nằm đúng đích (Box on Goal).
+
++ (Cộng): Nhân vật đang đứng trên đích (Player on Goal).
