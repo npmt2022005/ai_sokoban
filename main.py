@@ -9,16 +9,12 @@ from frontend.renderer import Renderer
 from constants import *
 
 def main():
-    # 1. Khởi tạo Backend
-    game = SokobanGame('data/maps/level1.txt')
+  
+    game = SokobanGame('data/maps/map_test.txt')
     
-    # 2. (truyền vào chiều rộng/cao bản đồ)
     renderer = Renderer(game.width, game.height)
-    
     running = True
     while running:
-        # 3. Lắng nghe sự kiện (Tắt cửa sổ)
-        # Trong vòng lặp while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -32,31 +28,28 @@ def main():
                     game.move(LEFT)
                 elif event.key == pygame.K_RIGHT:
                     game.move(RIGHT)
-                # Chức năng bổ trợ
-                elif event.key == pygame.K_u: # Nhấn U để Undo
+                elif event.key == pygame.K_u:
                     game.undo()
-                elif event.key == pygame.K_r: # Nhấn R để Reset
+                elif event.key == pygame.K_r: 
                     game.reset()
-                elif event.key == pygame.K_SPACE: # Nhấn Space để AI giải
+                elif event.key == pygame.K_SPACE: 
                     print("AI đang tìm đường...")
                     solution = a_star_solver(game)
                     if solution:
                         print(f"Tìm thấy lời giải sau {len(solution)} bước!")
-                        # Bạn Frontend sẽ chạy một vòng lặp để thực thi từng bước trong solution
                         for step in solution:
                             if step == 'U': game.move(UP)
                             elif step == 'D': game.move(DOWN)
                             elif step == 'L': game.move(LEFT)
                             elif step == 'R': game.move(RIGHT)
-                            renderer.draw(game) # Vẽ lại mỗi bước
+                            renderer.draw(game) 
                             pygame.time.delay(200) # Nghỉ 200ms để người xem kịp nhìn
                     else:
-                        print("AI bó tay, không tìm thấy đường!")
+                        print("AI không tìm thấy đường!")
                         # Kiểm tra xem sau bước đi này đã thắng chưa
                 # if game.is_win(game.boxes):
                 #     print("Chúc mừng! Bạn đã thắng!")
             
-        # 4. Vẽ trạng thái game hiện tại
         renderer.draw(game)
 
     pygame.quit()

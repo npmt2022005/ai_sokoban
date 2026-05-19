@@ -35,7 +35,7 @@ def bfs_solver(game):
 
     return None 
 
-def heuristic(state, targets):
+def heuristic_mahhatan(state, targets):
     #khoang cach mahhatan 
     player_pos, boxes = state
     total_dist = 0
@@ -44,11 +44,12 @@ def heuristic(state, targets):
         dists = [abs(box[0] - t[0]) + abs(box[1] - t[1]) for t in targets]
         total_dist += min(dists)
     return total_dist
+
 def a_star_solver(game):
     
     start_state = game.get_initial_state() # self.palyer_pos = (x, y)  self.boxes = [(x1, y1), (x2, y2)]
     
-    start_h = heuristic(start_state, game.targets) 
+    start_h = heuristic_mahhatan(start_state, game.targets) 
     
     # f = start_h vì f = g + h mà g = 0 vì chưa đi được bước nào => f=h = start_h ước lượng khoảng cách tuqwf 
     priority_queue = [(start_h, 0, start_state, [])]
@@ -74,10 +75,9 @@ def a_star_solver(game):
                 # Nếu chưa đi qua hoặc tìm thấy đường đến state này ngắn hơn đường cũ
                 if next_state not in visited or new_g < visited[next_state]: 
                     visited[next_state] = new_g
-                    h = heuristic(next_state, game.targets)
+                    h = heuristic_mahhatan(next_state, game.targets)
                     f = new_g + h
                     heapq.heappush(priority_queue, (f, new_g, next_state, path + [dir_names[d]]))
     return None
-    
 
-    
+

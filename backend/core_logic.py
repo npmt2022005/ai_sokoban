@@ -1,4 +1,6 @@
 from constants import *
+from collections import deque
+
 class SokobanGame :
     def __init__(self, map_path):
         self.map_path = map_path
@@ -11,9 +13,7 @@ class SokobanGame :
         self.load_map()
 
         self.history = [] # Ngăn xếp lưu lịch sử [(pos, boxes), ...]
-    def is_inside(self, r, c):
-        """Kiểm tra tọa độ (r, c) có nằm trong bản đồ không"""
-        return 0 <= r < self.height and 0 <= c < self.width
+    
 
     def load_map(self):
         # QUAN TRỌNG: Xóa dữ liệu cũ trước khi nạp lại
@@ -138,22 +138,145 @@ class SokobanGame :
         return self.targets == current_boxes
     def get_initial_state(self):
         return (self.player_pos, frozenset(self.boxes)) # frozenset({(1,2), (3,4)}) == frozenset({(3,4), (1,2)})
+    
+    def is_inside(self, r, c):
+        """Kiểm tra tọa độ (r, c) có nằm trong bản đồ không"""
+        return 0 <= r < self.height and 0 <= c < self.width
+    
+
+    def get_static_deadlock_location(self):
+        UP, DOWN, LEFT, RIGHT = (-1, 0), (1, 0), (0, -1), (0, 1)
+        DIRECTIONS = [UP, DOWN, LEFT, RIGHT]
+
+
+        visited_states = set()
+        safe_boxes_squares = set()
+        queue = deque()
+
+        for goal in self.targets:
+            safe_boxes_squares.add(goal)
+            # Tại mỗi ô đích, giả định người có thể đứng ở cả 4 hướng xung quanh để bắt đầu kéo
+            for dr, dc in DIRECTIONS:
+                player_r = goal[0] + dr
+                player_c = goal[1] + dc
+                player_pos = (player_r, player_c)
+
+                # Người chỉ được đứng ở ô trống, không được đứng vào tường
+                if self.is_inside(player_r, player_c) and player_pos not in self.walls:
+                    state = (goal, player_pos)
+                    visited_states.add(state)
+                    queue.append(state)
         
-    def get_deadlock_location(self):
-        deadlocks = set()
+        # Bước B
+        while queue:
+            box , player = queue.popleft()
+
+            # Thử kéo hộp lùi theo 4 hướng
+            for dr, dc in DIRECTIONS:
+                next_player = (player[0] - dr, player[1] - dc)
+                # Hộp bị dịch chuyển: chiếm lấy ô người vừa đứng cũ
+                next_box = player
+
+                # ĐIỀU KIỆN KÉO HỢP LỆ: cả ô hộp mới và ô người mới đều phải là ô trống (không là tường)
+                if (self.is_inside(next_box[0], next_box[1]) and next_box not in self.walls and
+                self.is_inside(next_player[0], next_player[1]) and next_player not in self.walls):
+                    
+                    next_state = (box, next_player)
+
+                    # Nếu trạng thái phối hợp này chưa từng được duyệt qua
+                    if next_state not in visited_states:
+                        visited_states.add(next_state)
+                        safe_boxes_squares.add(next_box) # Khẳng định ô này Hộp có thể đến được -> AN TOÀN
+                        queue.append(next_state)
+        # BƯỚC C: Tìm phần bù (Lấy tất cả sàn nhà trừ đi các ô An toàn)
+
+        dead_squares = set()
         for r in range(self.height):
             for c in range(self.width):
-                if (r, c) in self.walls or (r, c) in self.targets:
-                    continue
-                has_top = (r - 1, c) in self.walls
-                has_bottom = (r + 1, c) in self.walls
-                has_left = (r, c - 1) in self.walls
-                has_right = (r, c + 1) in self.walls
+                pos = (r, c)
+                # Nếu là ô trống nằm trong vùng chơi, không phải tường, không phải đích 
+                # VÀ KHÔNG nằm trong danh sách an toàn -> ĐÍCH THỊ LÀ Ô CHẾT
+                if (pos not in self.walls and 
+                    pos not in self.targets and 
+                    pos not in safe_boxes_squares):
+                    dead_squares.add(pos)
+        # ---- ĐOẠN CODE DEBUG NHANH ----
+        print(f"[DEBUG] Kích thước map: {self.height}x{self.width}")
+        print(f"[DEBUG] Số lượng ô tường: {len(self.walls)} - Kiểu dữ liệu mẫu: {type(list(self.walls)[0]) if self.walls else 'Rỗng'}")
+        print(f"[DEBUG] Số lượng ô đích: {len(self.targets)}")
+        print(f"[DEBUG] Số ô an toàn tìm được: {len(safe_boxes_squares)}")
+        # -------------------------------
+        return dead_squares
 
-                if (has_top and has_left) or (has_top and has_right) or (has_bottom and has_left) or (has_bottom and has_right):
-                    deadlocks.add((r, c))
-        
-        return deadlocks
+    def get_static_deadlock_location1(self):
+        DIRECTIONS = [(-1,0),(1,0),(0,-1),(0,1)]
+
+        visited_states = set()
+        safe_squares = set()
+        queue = deque()
+
+        # init từ goal
+        for goal in self.targets:
+            for dr, dc in DIRECTIONS:
+                player = (goal[0] + dr, goal[1] + dc)
+
+                if self.is_inside(*player) and player not in self.walls:
+                    state = (goal, player)
+                    visited_states.add(state)
+                    queue.append(state)
+                    safe_squares.add(goal)
+
+        # BFS pull
+        while queue:
+            box, player = queue.popleft()
+
+            for dr, dc in DIRECTIONS:
+                prev_player = (player[0] - dr, player[1] - dc)
+                prev_box = player
+
+                if (self.is_inside(*prev_player) and prev_player not in self.walls and
+                    self.is_inside(*prev_box) and prev_box not in self.walls):
+
+                    next_state = (box, prev_player)
+
+                    if next_state not in visited_states:
+                        visited_states.add(next_state)
+                        queue.append(next_state)
+                        safe_squares.add(prev_box)
+
+        # lấy dead squares
+        dead_squares = set()
+        for r in range(self.height):
+            for c in range(self.width):
+                pos = (r, c)
+                if (pos not in self.walls and
+                    pos not in self.targets and
+                    pos not in safe_squares):
+                    dead_squares.add(pos)
+
+        return dead_squares
+    def test_print_deadlocks(self,deadlocks):
+        """
+        Hàm in bản đồ trực quan bằng ký tự để test thuật toán.
+        #: Tường, .: Ô đích, X: Ô chết, _: Ô trống an toàn
+        """
+        print("\n" + "="*10 + " BẢN ĐỒ PHÁT HIỆN GÓC/TƯỜNG CHẾT " + "="*10)
+        for r in range(self.height):
+            row_str = ""
+            for c in range(self.width):
+                pos = (r, c)
+                if pos in self.walls:
+                    row_str += "# "  # Tường
+                elif pos in self.targets:
+                    row_str += ". "  # Ô đích (Không bao giờ chết)
+                elif pos in deadlocks:
+                    row_str += "X "  # Ô chết phát hiện bởi thuật toán PULL
+                else:
+                    row_str += "_ "  # Ô trống an toàn (Dùng dấu gạch dưới cho dễ nhìn)
+            print(row_str)
+        print("=" * 52 + "\n")
+
+
     
     
     
