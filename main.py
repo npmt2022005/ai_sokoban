@@ -76,6 +76,7 @@ def main():
                     game.undo()
                 elif event.key == pygame.K_r: 
                     game.reset()
+    
                 elif event.key == pygame.K_SPACE: 
                     print("AI đang tìm đường...")
                     solution = a_star_solver(game)

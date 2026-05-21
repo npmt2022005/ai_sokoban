@@ -133,9 +133,14 @@ class SokobanGame :
             new_boxes.add(box_new_pos)
 
         return (new_pos, frozenset(new_boxes))
-    
+
     def is_win(self, current_boxes):
-        return self.targets == current_boxes
+        # Đảm bảo targets là một set để dùng được issubset
+        targets_set = set(self.targets)
+        
+        # Kiểm tra xem TẤT CẢ các ô đích đã có hộp đè lên chưa
+        # (Nghĩa là targets phải là tập con của current_boxes)
+        return targets_set.issubset(set(current_boxes))
     def get_initial_state(self):
         return (self.player_pos, frozenset(self.boxes)) # frozenset({(1,2), (3,4)}) == frozenset({(3,4), (1,2)})
     
