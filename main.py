@@ -4,6 +4,7 @@ from backend.core_logic import SokobanGame
 import pygame
 import sys
 import os
+import re
 from backend.core_logic import SokobanGame
 from backend.solver_1 import bfs_solver, a_star_solver, a_star_push_based
 from frontend.renderer import Renderer
@@ -13,7 +14,6 @@ def main():
     
     current_level = 1
     game = SokobanGame(f'data/maps/level{current_level}.txt')
-
     renderer = Renderer()
     clock = pygame.time.Clock()
     ALGORITHMS = [

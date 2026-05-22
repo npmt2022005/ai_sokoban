@@ -44,18 +44,67 @@ class Renderer:
         for key, img in self.raw_images.items():
             self.images[key] = pygame.transform.scale(img, (self.tile_size, self.tile_size))
 
+
+    def draw_main_menu(self, selected_button_index):
+        """Vẽ giao diện Main Menu chính theo nguyên mẫu thiết kế"""
+        # 1. Tô màu nền Tím đậm toàn màn hình
+        self.screen.fill((120, 0, 120))
+        
+        # Tính toán tọa độ hộp thoại Menu xám sáng nằm chính giữa màn hình
+        screen_w = self.screen.get_width()
+        screen_h = self.screen.get_height()
+        menu_w, menu_h = 400, 300
+        menu_x = (screen_w - menu_w) // 2
+        menu_y = (screen_h - menu_h) // 2
+        
+        # 2. Vẽ thân hộp thoại màu xám sáng
+        pygame.draw.rect(self.screen, (220, 220, 220), (menu_x, menu_y, menu_w, menu_h))
+        
+        # 3. Vẽ thanh tiêu đề hộp thoại màu xám tối
+        title_bar_h = 50
+        pygame.draw.rect(self.screen, (70, 70, 70), (menu_x, menu_y, menu_w, title_bar_h))
+        
+        # 4. Vẽ chữ tiêu đề "Main Menu"
+        font_title = pygame.font.SysFont(None, 36, bold=True)
+        title_surface = font_title.render("Main Menu", True, (255, 255, 255))
+        self.screen.blit(title_surface, (menu_x + 15, menu_y + 12))
+        
+        # 5. Khởi tạo cấu hình cho 2 nút tính năng: Play và Quit
+        font_button = pygame.font.SysFont(None, 42)
+        buttons = ["Play", "Quit"]
+        start_button_y = menu_y + 100
+        
+        for i, btn_text in enumerate(buttons):
+            # Kết xuất chữ (màu xám đen mặc định)
+            text_color = (60, 60, 60)
+            text_surface = font_button.render(btn_text, True, text_color)
+            text_rect = text_surface.get_rect(center=(screen_w // 2, start_button_y + i * 70))
+            
+            # Nếu nút đang được trỏ tới, vẽ khung viền trắng bao quanh chữ chữ như ảnh mẫu
+            if i == selected_button_index:
+                padding_x, padding_y = 20, 8
+                border_rect = pygame.Rect(
+                    text_rect.x - padding_x, 
+                    text_rect.y - padding_y, 
+                    text_rect.width + (padding_x * 2), 
+                    text_rect.height + (padding_y * 2)
+                )
+                pygame.draw.rect(self.screen, (255, 255, 255), border_rect, 2) # Độ dày viền = 2px
+                
+            self.screen.blit(text_surface, text_rect)
+            
+        pygame.display.flip()
+
     def draw_map_selection_menu(self, maps, selected_index):
         """Vẽ giao diện Menu chọn Map"""
         self.screen.fill((30, 30, 30)) # Màu nền xám tối cho menu
 
         
-        # Khởi tạo font chữ hệ thống
-        font = pygame.font.SysFont('Arial', 32)
-        title_font = pygame.font.SysFont('Arial', 40, bold=True)
+        font = pygame.font.SysFont(None, 34)
+        title_font = pygame.font.SysFont(None, 42, bold=True)
         
-        # 1. Vẽ tiêu đề menu
-        title_surface = title_font.render("CHỌN MÀN CHƠI (SELECT MAP)", True, (255, 215, 0)) # Màu vàng gold
-        title_rect = title_surface.get_rect(center=(self.screen.get_width() // 2, 60))
+        title_surface = title_font.render("CHON MAN CHOI (SELECT MAP)", True, (255, 215, 0)) 
+        title_rect = title_surface.get_rect(center=(self.screen.get_width() // 2, 50))
         self.screen.blit(title_surface, title_rect)
         
         start_y = 200
