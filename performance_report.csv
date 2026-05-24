@@ -1,0 +1,133 @@
+﻿Màn chơi (Map),Thuật toán (Algorithm),Trạng thái,Thời gian xử lý (ms),Số nút đã duyệt (States Generated),Bộ nhớ hàng đợi (Memory In Queue),Tổng số bước giải (Steps)
+level1.txt,BFS Solver,Thành công,0.06,3.0,0.0,1.0
+level1.txt,A* Standard,Thành công,0.2,2.0,0.0,1.0
+level1.txt,Push-based A*,Thành công,0.22,2.0,0.0,1.0
+level2.txt,BFS Solver,Thành công,0.08,41.0,0.0,4.0
+level2.txt,A* Standard,Thành công,0.61,15.0,0.0,4.0
+level2.txt,Push-based A*,Thành công,0.83,4.0,0.0,4.0
+level3.txt,BFS Solver,Thành công,1.19,651.0,0.0,13.0
+level3.txt,A* Standard,Thành công,3.52,211.0,0.0,13.0
+level3.txt,Push-based A*,Thành công,0.97,10.0,0.0,15.0
+level4.txt,BFS Solver,Thành công,8.8,6638.0,0.0,14.0
+level4.txt,A* Standard,Thành công,14.78,535.0,0.0,14.0
+level4.txt,Push-based A*,Thành công,2.64,11.0,0.0,16.0
+level5.txt,BFS Solver,Thành công,0.54,263.0,0.0,6.0
+level5.txt,A* Standard,Thành công,1.68,44.0,0.0,6.0
+level5.txt,Push-based A*,Thành công,0.91,6.0,0.0,12.0
+level6.txt,BFS Solver,Thành công,1.23,1047.0,0.0,9.0
+level6.txt,A* Standard,Thành công,3.02,159.0,0.0,9.0
+level6.txt,Push-based A*,Thành công,1.35,8.0,0.0,10.0
+level7.txt,BFS Solver,Thành công,0.29,235.0,0.0,8.0
+level7.txt,A* Standard,Thành công,1.46,46.0,0.0,8.0
+level7.txt,Push-based A*,Thành công,0.88,6.0,0.0,14.0
+level8.txt,BFS Solver,Thành công,3.82,2388.0,0.0,10.0
+level8.txt,A* Standard,Thành công,5.09,214.0,0.0,10.0
+level8.txt,Push-based A*,Thành công,2.95,16.0,0.0,16.0
+level9.txt,BFS Solver,Thành công,0.61,513.0,0.0,9.0
+level9.txt,A* Standard,Thành công,1.81,93.0,0.0,9.0
+level9.txt,Push-based A*,Thành công,0.67,4.0,0.0,9.0
+level10.txt,BFS Solver,Thành công,4.92,3753.0,0.0,14.0
+level10.txt,A* Standard,Thành công,12.12,552.0,0.0,14.0
+level10.txt,Push-based A*,Thành công,2.9,14.0,0.0,16.0
+level11.txt,BFS Solver,Thành công,42.17,17301.0,0.0,16.0
+level11.txt,A* Standard,Lỗi: video system not initialized,,,,
+level11.txt,Push-based A*,Thành công,3.88,8.0,0.0,20.0
+level12.txt,BFS Solver,Thành công,1.73,1157.0,0.0,11.0
+level12.txt,A* Standard,Thành công,3.42,137.0,0.0,11.0
+level12.txt,Push-based A*,Thành công,2.64,25.0,0.0,31.0
+level13.txt,BFS Solver,Thành công,200.56,112340.0,0.0,24.0
+level13.txt,A* Standard,Lỗi: video system not initialized,,,,
+level13.txt,Push-based A*,Thành công,19.16,40.0,0.0,50.0
+level14.txt,BFS Solver,Thất bại,,,,
+level14.txt,A* Standard,Thất bại,,,,
+level14.txt,Push-based A*,Thất bại,,,,
+level15.txt,BFS Solver,Thành công,10.41,6478.0,0.0,12.0
+level15.txt,A* Standard,Thành công,11.43,370.0,0.0,12.0
+level15.txt,Push-based A*,Thành công,4.28,25.0,0.0,20.0
+level16.txt,BFS Solver,Thành công,12.0,8859.0,0.0,13.0
+level16.txt,A* Standard,Thành công,10.71,419.0,0.0,13.0
+level16.txt,Push-based A*,Thành công,7.69,38.0,0.0,18.0
+level17.txt,BFS Solver,Thành công,1.96,1589.0,0.0,12.0
+level17.txt,A* Standard,Thành công,5.26,163.0,0.0,12.0
+level17.txt,Push-based A*,Thành công,4.97,25.0,0.0,24.0
+level18.txt,BFS Solver,Thành công,2.98,2392.0,0.0,18.0
+level18.txt,A* Standard,Thành công,10.86,529.0,0.0,18.0
+level18.txt,Push-based A*,Thành công,1.65,16.0,0.0,24.0
+level19.txt,BFS Solver,Thành công,36.75,24135.0,0.0,18.0
+level19.txt,A* Standard,Lỗi: video system not initialized,,,,
+level19.txt,Push-based A*,Thành công,31.36,133.0,0.0,44.0
+level20.txt,BFS Solver,Thành công,11.14,9061.0,0.0,15.0
+level20.txt,A* Standard,Thành công,16.63,771.0,0.0,15.0
+level20.txt,Push-based A*,Thành công,4.18,16.0,0.0,24.0
+level21.txt,BFS Solver,Thành công,4.46,3788.0,0.0,16.0
+level21.txt,A* Standard,Thành công,8.8,415.0,0.0,16.0
+level21.txt,Push-based A*,Thành công,5.46,30.0,0.0,23.0
+level22.txt,BFS Solver,Thành công,7.99,5142.0,0.0,19.0
+level22.txt,A* Standard,Thành công,19.86,802.0,0.0,19.0
+level22.txt,Push-based A*,Thành công,5.47,37.0,0.0,29.0
+level23.txt,BFS Solver,Thành công,0.55,490.0,0.0,11.0
+level23.txt,A* Standard,Thành công,2.45,100.0,0.0,11.0
+level23.txt,Push-based A*,Thành công,0.98,4.0,0.0,13.0
+level24.txt,BFS Solver,Thành công,133.36,59682.0,0.0,33.0
+level24.txt,A* Standard,Lỗi: video system not initialized,,,,
+level24.txt,Push-based A*,Thành công,11.06,55.0,0.0,53.0
+level25.txt,BFS Solver,Thành công,52.31,36587.0,0.0,25.0
+level25.txt,A* Standard,Lỗi: video system not initialized,,,,
+level25.txt,Push-based A*,Thành công,35.75,93.0,0.0,40.0
+level26.txt,BFS Solver,Thành công,50.56,35506.0,0.0,25.0
+level26.txt,A* Standard,Lỗi: video system not initialized,,,,
+level26.txt,Push-based A*,Thành công,32.78,93.0,0.0,40.0
+level27.txt,BFS Solver,Thành công,292.2,139306.0,0.0,41.0
+level27.txt,A* Standard,Lỗi: video system not initialized,,,,
+level27.txt,Push-based A*,Thành công,39.22,183.0,0.0,61.0
+level28.txt,BFS Solver,Thành công,1430.54,763159.0,0.0,40.0
+level28.txt,A* Standard,Lỗi: video system not initialized,,,,
+level28.txt,Push-based A*,Thành công,171.91,375.0,0.0,48.0
+level29.txt,BFS Solver,Thành công,256.89,129594.0,0.0,41.0
+level29.txt,A* Standard,Lỗi: video system not initialized,,,,
+level29.txt,Push-based A*,Thành công,23.36,110.0,0.0,63.0
+level30.txt,BFS Solver,Thành công,1.03,792.0,0.0,9.0
+level30.txt,A* Standard,Thành công,1.84,75.0,0.0,9.0
+level30.txt,Push-based A*,Thành công,1.38,8.0,0.0,12.0
+level31.txt,BFS Solver,Thành công,8.2,5681.0,0.0,29.0
+level31.txt,A* Standard,Lỗi: video system not initialized,,,,
+level31.txt,Push-based A*,Thành công,11.91,51.0,0.0,44.0
+level32.txt,BFS Solver,Thành công,1.85,1745.0,0.0,18.0
+level32.txt,A* Standard,Thành công,5.54,294.0,0.0,18.0
+level32.txt,Push-based A*,Thành công,1.07,6.0,0.0,20.0
+level33.txt,BFS Solver,Thành công,2305.74,911842.0,0.0,43.0
+level33.txt,A* Standard,Lỗi: video system not initialized,,,,
+level33.txt,Push-based A*,Lỗi: video system not initialized,,,,
+level34.txt,BFS Solver,Thành công,72.33,46822.0,0.0,37.0
+level34.txt,A* Standard,Lỗi: video system not initialized,,,,
+level34.txt,Push-based A*,Thành công,39.31,126.0,0.0,59.0
+level35.txt,BFS Solver,Quá tải (Timeout),,,,
+level35.txt,A* Standard,Lỗi: video system not initialized,,,,
+level35.txt,Push-based A*,Thành công,229.01,442.0,0.0,137.0
+level36.txt,BFS Solver,Thành công,4.19,3566.0,0.0,20.0
+level36.txt,A* Standard,Thành công,9.57,437.0,0.0,20.0
+level36.txt,Push-based A*,Thành công,3.15,12.0,0.0,20.0
+level37.txt,BFS Solver,Quá tải (Timeout),,,,
+level37.txt,A* Standard,Lỗi: video system not initialized,,,,
+level37.txt,Push-based A*,Lỗi: video system not initialized,,,,
+level38.txt,BFS Solver,Thành công,342.18,165218.0,0.0,49.0
+level38.txt,A* Standard,Lỗi: video system not initialized,,,,
+level38.txt,Push-based A*,Thành công,155.23,420.0,0.0,102.0
+level39.txt,BFS Solver,Thành công,140.18,69830.0,0.0,38.0
+level39.txt,A* Standard,Lỗi: video system not initialized,,,,
+level39.txt,Push-based A*,Thành công,43.39,108.0,0.0,50.0
+level40.txt,BFS Solver,Thành công,24.19,17018.0,0.0,30.0
+level40.txt,A* Standard,Lỗi: video system not initialized,,,,
+level40.txt,Push-based A*,Thành công,20.03,66.0,0.0,81.0
+level41.txt,BFS Solver,Quá tải (Timeout),,,,
+level41.txt,A* Standard,Lỗi: video system not initialized,,,,
+level41.txt,Push-based A*,Lỗi: video system not initialized,,,,
+level42.txt,BFS Solver,Thành công,206.94,119055.0,0.0,35.0
+level42.txt,A* Standard,Lỗi: video system not initialized,,,,
+level42.txt,Push-based A*,Thành công,84.23,195.0,0.0,63.0
+level43.txt,BFS Solver,Thành công,24.91,13867.0,0.0,16.0
+level43.txt,A* Standard,Thành công,20.85,550.0,0.0,16.0
+level43.txt,Push-based A*,Thành công,12.51,62.0,0.0,20.0
+level44.txt,BFS Solver,Quá tải (Timeout),,,,
+level44.txt,A* Standard,Lỗi: video system not initialized,,,,
+level44.txt,Push-based A*,Lỗi: video system not initialized,,,,
